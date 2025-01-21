@@ -41,6 +41,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       return { success: true };
     } catch (error: any) {
       let msg = error.message;
+      console.log("error message:", msg);
+      if (msg.includes("(auth/invalid-credential)"))
+        msg = "Credentials does not match with our records.";
+      if (msg.includes("(auth/invalid-email)")) msg = "Invalid Email";
       return { success: false, msg };
     }
   };
@@ -60,6 +64,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       return { success: true };
     } catch (error: any) {
       let msg = error.message;
+      console.log("error message:", msg);
+      if (msg.includes("(auth/email-already-in-use)"))
+        msg = "This email is already in use.";
+
       return { success: false, msg };
     }
   };
