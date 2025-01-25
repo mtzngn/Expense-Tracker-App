@@ -13,9 +13,11 @@ import * as Icons from "phosphor-react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { signOut } from "firebase/auth";
 import { auth } from "@/config/firebase";
+import { useRouter } from "expo-router";
 
 const Profile = () => {
   const { user } = useAuth();
+  const router = useRouter();
 
   const accountOptions: accountOptionType[] = [
     {
@@ -67,6 +69,8 @@ const Profile = () => {
     if (item.title == "Logout") {
       showLogoutAlert();
     }
+
+    if (item.routeName) router.push(item.routeName);
   };
   return (
     <ScreenWrapper>
