@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
 import React from "react";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import { verticalScale } from "@/utils/styling";
@@ -10,6 +10,9 @@ import { Image } from "expo-image";
 import { getProfileImage } from "@/services/imageService";
 import { accountOptionType } from "@/types";
 import * as Icons from "phosphor-react-native";
+import Animated, { FadeInDown } from "react-native-reanimated";
+import { signOut } from "firebase/auth";
+import { auth } from "@/config/firebase";
 
 const Profile = () => {
   const { user } = useAuth();
@@ -40,6 +43,31 @@ const Profile = () => {
       bgColor: "#e11d48",
     },
   ];
+
+  const handleLogout = async () => {
+    await signOut(auth);
+  };
+
+  const showLogoutAlert = () => {
+    Alert.alert("Confirm", "Are you sure you want to logout?", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("cancel logout"),
+        style: "cancel",
+      },
+      {
+        text: "Logout",
+        onPress: () => handleLogout(),
+        style: "destructive",
+      },
+    ]);
+  };
+  const handlePress = (item: accountOptionType) => {
+    console.log(item.title);
+    if (item.title == "Logout") {
+      showLogoutAlert();
+    }
+  };
   return (
     <ScreenWrapper>
       <View style={styles.container}>
@@ -72,8 +100,17 @@ const Profile = () => {
         <View style={styles.accountOption}>
           {accountOptions.map((item, index) => {
             return (
-              <View style={styles.listItem}>
-                <TouchableOpacity style={styles.flexRow}>
+              <Animated.View
+                entering={FadeInDown.delay(index * 50)
+                  .springify()
+                  .damping(14)}
+                key={index.toString()}
+                style={styles.listItem}
+              >
+                <TouchableOpacity
+                  style={styles.flexRow}
+                  onPress={() => handlePress(item)}
+                >
                   {/* Icon */}
                   <View
                     style={[
@@ -92,7 +129,7 @@ const Profile = () => {
                     color={colors.white}
                   />
                 </TouchableOpacity>
-              </View>
+              </Animated.View>
             );
           })}
         </View>
