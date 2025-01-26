@@ -65,8 +65,6 @@ const profileModal = () => {
       aspect: [4, 3],
       quality: 0.5,
     });
-    console.log(result);
-    console.log("result.assets[0]", result.assets[0]);
 
     if (!result.canceled) {
       setUserData({ ...userData, image: result.assets[0] });
