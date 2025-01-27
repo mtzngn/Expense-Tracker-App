@@ -1,8 +1,8 @@
-import { CLOUDINAR_CLOUD_NAME, CLOUDINAY_UPLOAD_PRESET } from "@/constants";
+import { CLOUDINAY_UPLOAD_PRESET } from "@/constants";
 import { ResponseType } from "@/types";
 import axios from "axios";
 
-const CLOUDINAYR_CLOUD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINAR_CLOUD_NAME}/image/upload`;
+const CLOUDINAYR_CLOUD_URL = `https://api.cloudinary.com/v1_1/${process.env.EXPO_PUBLIC_CLOUDINAR_CLOUD_NAME}/image/upload`;
 
 export const uploadFileToCloudinary = async (
   file: { uri?: string } | string,
