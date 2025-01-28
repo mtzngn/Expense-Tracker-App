@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, TextStyle } from "react-native";
-import React, { Children } from "react";
+import { StyleSheet, Text, TextStyle } from "react-native";
+import React from "react";
 import { TypoProps } from "@/types";
 import { colors } from "@/constants/theme";
 import { verticalScale } from "@/utils/styling";

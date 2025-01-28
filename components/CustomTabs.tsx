@@ -1,10 +1,6 @@
 import { View, Platform, TouchableOpacity, StyleSheet } from "react-native";
-import { useLinkBuilder, useTheme } from "@react-navigation/native";
-import { Text, PlatformPressable } from "@react-navigation/elements";
-import {
-  BottomTabBarProps,
-  createBottomTabNavigator,
-} from "@react-navigation/bottom-tabs";
+import { Text } from "@react-navigation/elements";
+import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { colors, spacingY } from "@/constants/theme";
 import { verticalScale } from "@/utils/styling";
 import * as Icons from "phosphor-react-native";
