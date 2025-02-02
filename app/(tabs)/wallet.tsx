@@ -3,11 +3,27 @@ import React from "react";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import { colors, radius, spacingX, spacingY } from "@/constants/theme";
 import { verticalScale } from "@/utils/styling";
+import Typo from "@/components/Typo";
 
 const Wallet = () => {
+  const getTotalBalance = () => {
+    return 0;
+  };
   return (
     <ScreenWrapper style={{ backgroundColor: colors.black }}>
-      <View style={styles.container}></View>
+      <View style={styles.container}>
+        {/* balance view */}
+        <View style={styles.balanceView}>
+          <View style={{ alignItems: "center" }}>
+            <Typo size={45} fontWeight={500}>
+              ${getTotalBalance()?.toFixed(2)}
+            </Typo>
+            <Typo size={16} color={colors.neutral300}>
+              Total Balance
+            </Typo>
+          </View>
+        </View>
+      </View>
     </ScreenWrapper>
   );
 };
