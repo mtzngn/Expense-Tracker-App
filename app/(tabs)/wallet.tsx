@@ -1,11 +1,15 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import { colors, radius, spacingX, spacingY } from "@/constants/theme";
 import { verticalScale } from "@/utils/styling";
 import Typo from "@/components/Typo";
+import * as Icons from "phosphor-react-native";
+import { useRouter } from "expo-router";
 
 const Wallet = () => {
+  const router = useRouter();
+
   const getTotalBalance = () => {
     return 0;
   };
@@ -22,6 +26,26 @@ const Wallet = () => {
               Total Balance
             </Typo>
           </View>
+        </View>
+
+        {/* wallets */}
+        <View style={styles.wallets}>
+          {/* header */}
+          <View style={styles.flexRow}>
+            <Typo size={20} fontWeight={"500"}>
+              My Wallets
+            </Typo>
+            <TouchableOpacity
+              onPress={() => router.push("/(modals)/walletModal")}
+            >
+              <Icons.PlusCircle
+                weight="fill"
+                color={colors.primary}
+                size={verticalScale(32)}
+              ></Icons.PlusCircle>
+            </TouchableOpacity>
+          </View>
+          {/* todo: wallet list */}
         </View>
       </View>
     </ScreenWrapper>
