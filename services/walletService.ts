@@ -42,3 +42,16 @@ export const createOrUpdateWallet = async (
     return { success: false, msg: error.message };
   }
 };
+
+export const deleteWallet = async (walletId: string): Promise<ResponseType> => {
+  try {
+    const walletRef = doc(firestore, "wallets", walletId);
+    await deleteDoc(walletRef);
+
+    // todo: delete all the transactions related to this wallet
+    return { success: true, msg: "Wallet is deleted succesfully" };
+  } catch (err: any) {
+    console.log("error deleting the wallet", err);
+    return { success: false, msg: err.msg };
+  }
+};
